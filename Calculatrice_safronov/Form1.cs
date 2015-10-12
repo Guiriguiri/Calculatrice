@@ -109,13 +109,21 @@ namespace Calculatrice_safronov
                 monResultat.Operande1 = decimal.Parse(temp);
             }
             else if (monResultat.Operande1.HasValue)
-            {
-                monResultat.Operande2 = decimal.Parse(temp);
-                temp = monResultat.Calculer().ToString();          
-                monResultat = new Diviser();
-                monResultat.Operande1 = decimal.Parse(temp);
-                zt_Write.Text = temp;
-                zt_read.Text = temp;
+            { 
+                 monResultat.Operande2 = decimal.Parse(temp);
+                 if(monResultat.Operande2 == 0)
+                {
+                    MessageBox.Show("Division par zero est impossible");
+                }
+                else
+                {
+                    temp = monResultat.Calculer().ToString();
+                    monResultat = new Diviser();
+                    monResultat.Operande1 = decimal.Parse(temp);
+                    zt_Write.Text = temp;
+                    zt_read.Text = temp;
+                }
+                    
             }
            
                 zt_Write.Text += "/";
@@ -211,9 +219,25 @@ namespace Calculatrice_safronov
         {
             monResultat.Operande2 = decimal.Parse(temp);
 
-            this.ActiveControl = null;
-            zt_read.Text = monResultat.Calculer().ToString();
-            temp = zt_read.Text;
+            try
+            {
+                this.ActiveControl = null;
+                zt_read.Text = monResultat.Calculer().ToString();
+                temp = zt_read.Text;
+            }
+            catch(DivideByZeroException)
+            {
+                MessageBox.Show("Division par zero est impossible...");
+            }
+            catch(ArgumentNullException)
+            {
+                MessageBox.Show("Racine carré de valeur null est impossible");
+            }
+            catch(FormatException)
+            {
+                MessageBox.Show("Traitement sans valeur est impossible...");
+            }
+           
         }
 
         private void WIN_CALC_KeyPress(object sender, KeyPressEventArgs e)
@@ -312,6 +336,36 @@ namespace Calculatrice_safronov
             zt_Write.Text += "3,14";
             this.ActiveControl = null;
             temp += "3,14";
+        }
+
+        private void btn_racine_Click(object sender, EventArgs e)
+        {
+            if (monResultat == null)
+            {
+                try
+                {
+                    monResultat = new RacineCarre();
+                    monResultat.Operande1 = decimal.Parse(temp);
+                    btn_equal_Click(btn_equal, new EventArgs());
+                    zt_Write.Text = temp;
+                    zt_read.Text = temp;
+                }
+                catch(ArgumentNullException)
+                {
+                    MessageBox.Show("Racine carré de valeur null est impossible");
+                }
+                 
+            }
+            else if(monResultat.Operande1.HasValue)
+            {
+                temp = monResultat.Calculer().ToString();
+                monResultat = new RacineCarre();
+                monResultat.Operande1 = decimal.Parse(temp);
+                zt_Write.Text = temp;
+                zt_read.Text = temp;
+                btn_equal_Click(btn_equal, new EventArgs());
+            }
+            this.ActiveControl = null;
         }
     }
 }

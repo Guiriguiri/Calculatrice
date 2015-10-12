@@ -10,7 +10,9 @@ namespace Calculatrice_safronov
     {
         public override decimal Calculer()
         {
-            throw new NotImplementedException();
+            decimal Resultat;
+            Resultat = (decimal)Math.Sqrt((double) Operande1);
+            return Resultat;
         }
     }
 }

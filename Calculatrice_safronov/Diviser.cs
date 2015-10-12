@@ -10,7 +10,10 @@ namespace Calculatrice_safronov
     {
         public override decimal Calculer()
         {
-            return this.Operande1.Value / this.Operande2.Value;
+            decimal Resultat;
+            Resultat = this.Operande1.Value / this.Operande2.Value;
+            return Resultat;
+            
         }
     }
 }

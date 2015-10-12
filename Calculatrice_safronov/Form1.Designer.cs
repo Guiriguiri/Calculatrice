@@ -123,6 +123,7 @@
             this.btn_racine.TabStop = false;
             this.btn_racine.Text = " √ ";
             this.btn_racine.UseVisualStyleBackColor = false;
+            this.btn_racine.Click += new System.EventHandler(this.btn_racine_Click);
             // 
             // btn_7
             // 
