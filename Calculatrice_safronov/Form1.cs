@@ -186,6 +186,7 @@ namespace Calculatrice_safronov
             }
             else if(monResultat.Operande1.HasValue)
             {
+
                 monResultat.Operande2 = decimal.Parse(temp);
                 temp = monResultat.Calculer().ToString();
                 monResultat = new Ajouter();
@@ -217,13 +218,19 @@ namespace Calculatrice_safronov
 
         private void btn_equal_Click(object sender, EventArgs e)
         {
-            monResultat.Operande2 = decimal.Parse(temp);
+            
 
             try
             {
+                monResultat.Operande2 = decimal.Parse(temp);
                 this.ActiveControl = null;
-                zt_read.Text = monResultat.Calculer().ToString();
+                decimal var1 = monResultat.Calculer();
+                zt_read.Text = var1.ToString();
                 temp = zt_read.Text;
+                monResultat = null;
+
+                zt_Write.Text = temp;
+                zt_read.Text = temp;
             }
             catch(DivideByZeroException)
             {
