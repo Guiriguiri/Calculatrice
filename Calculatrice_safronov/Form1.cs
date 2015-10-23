@@ -102,102 +102,153 @@ namespace Calculatrice_safronov
 
         private void btn_divise_Click(object sender, EventArgs e)
         {
-
-            if(monResultat == null)
+            try
             {
-                monResultat = new Diviser();
-                monResultat.Operande1 = decimal.Parse(temp);
-            }
-            else if (monResultat.Operande1.HasValue)
-            { 
-                 monResultat.Operande2 = decimal.Parse(temp);
-                 if(monResultat.Operande2 == 0)
+                if (monResultat == null)
                 {
-                    MessageBox.Show("Division par zero est impossible");
-                }
-                else
-                {
-                    temp = monResultat.Calculer().ToString();
                     monResultat = new Diviser();
                     monResultat.Operande1 = decimal.Parse(temp);
-                    zt_Write.Text = temp;
-                    zt_read.Text = temp;
                 }
-                    
-            }
-           
+                else if (monResultat.Operande1.HasValue)
+                {
+                    monResultat.Operande2 = decimal.Parse(temp);
+                    if (monResultat.Operande2 == 0)
+                    {
+                        MessageBox.Show("Division par zero est impossible");
+                    }
+                    else
+                    {
+                        temp = monResultat.Calculer().ToString();
+                        monResultat = new Diviser();
+                        monResultat.Operande1 = decimal.Parse(temp);
+                        zt_Write.Text = temp;
+                        zt_read.Text = temp;
+                    }
+
+                }
+
                 zt_Write.Text += "/";
                 temp = string.Empty;
                 this.ActiveControl = null;
+            }
+            catch(ArgumentNullException)
+            {
+                MessageBox.Show("Sans operandes l'operation est impossible");
+                monResultat = null;
+            }
+            catch(FormatException)
+            {
+                MessageBox.Show("Mauvaise manipulation de votre part, vérifiez votre saisie");
+                monResultat = null;
+            }
         }
 
         private void btn_multi_Click(object sender, EventArgs e)
         {
-
-            if(monResultat == null)
+            try
             {
-                monResultat = new Multiplier();
-                monResultat.Operande1 = decimal.Parse(temp);
+                if (monResultat == null)
+                {
+                    monResultat = new Multiplier();
+                    monResultat.Operande1 = decimal.Parse(temp);
+                }
+                else if (monResultat.Operande1.HasValue)
+                {
+                    monResultat.Operande2 = decimal.Parse(temp);
+                    temp = monResultat.Calculer().ToString();
+                    monResultat = new Multiplier();
+                    monResultat.Operande1 = decimal.Parse(temp);
+                    zt_Write.Text = temp;
+                    zt_read.Text = temp;
+                }
+
+                zt_Write.Text += "*";
+                temp = string.Empty;
+                this.ActiveControl = null;
             }
-            else if(monResultat.Operande1.HasValue)
+            catch(ArgumentNullException)
             {
-                monResultat.Operande2 = decimal.Parse(temp);
-                temp = monResultat.Calculer().ToString();
-                monResultat = new Multiplier();
-                monResultat.Operande1 = decimal.Parse(temp);
-                zt_Write.Text = temp;
-                zt_read.Text = temp;
+                MessageBox.Show("Sans operandes l'operation est impossible");
+                monResultat = null;
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Mauvaise manipulation de votre part, vérifiez votre saisie");
+                monResultat = null;
             }
 
-            zt_Write.Text += "*";
-            temp = string.Empty;
-            this.ActiveControl = null;
         }
 
         private void btn_less_Click(object sender, EventArgs e)
         {
-
-            if(monResultat == null)
+            try
             {
-                monResultat = new Soustraire();
-                monResultat.Operande1 = decimal.Parse(temp);
-            }
-            else if(monResultat.Operande1.HasValue)
-            {
-                monResultat.Operande2 = decimal.Parse(temp);
-                temp = monResultat.Calculer().ToString();
-                monResultat = new Soustraire();
-                monResultat.Operande1 = decimal.Parse(temp);
-                zt_Write.Text = temp;
-                zt_read.Text = temp;
-            }
+                if (monResultat == null)
+                {
+                    monResultat = new Soustraire();
+                    monResultat.Operande1 = decimal.Parse(temp);
+                }
+                else if (monResultat.Operande1.HasValue)
+                {
+                    monResultat.Operande2 = decimal.Parse(temp);
+                    temp = monResultat.Calculer().ToString();
+                    monResultat = new Soustraire();
+                    monResultat.Operande1 = decimal.Parse(temp);
+                    zt_Write.Text = temp;
+                    zt_read.Text = temp;
+                }
 
-            zt_Write.Text += "-";
-            this.ActiveControl = null;
-            temp = string.Empty;
+                zt_Write.Text += "-";
+                this.ActiveControl = null;
+                temp = string.Empty;
+            }
+            catch(ArgumentNullException)
+            {
+                MessageBox.Show("Sans operandes l'operation est impossible");
+                monResultat = null;
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Mauvaise manipulation de votre part, vérifiez votre saisie");
+                monResultat = null;
+            }
         }
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            if(monResultat == null)
+            try
             {
-                monResultat = new Ajouter();
-                monResultat.Operande1 = decimal.Parse(temp);
+                if (monResultat == null)
+                {
+                    monResultat = new Ajouter();
+                    monResultat.Operande1 = decimal.Parse(temp);
+                }
+                else if (monResultat.Operande1.HasValue)
+                {
+
+                    monResultat.Operande2 = decimal.Parse(temp);
+                    temp = monResultat.Calculer().ToString();
+                    monResultat = new Ajouter();
+                    monResultat.Operande1 = decimal.Parse(temp);
+                    zt_Write.Text = temp;
+                    zt_read.Text = temp;
+                }
+
+                zt_Write.Text += "+";
+                temp = string.Empty;
+                this.ActiveControl = null;
             }
-            else if(monResultat.Operande1.HasValue)
+            catch (ArgumentNullException)
             {
-
-                monResultat.Operande2 = decimal.Parse(temp);
-                temp = monResultat.Calculer().ToString();
-                monResultat = new Ajouter();
-                monResultat.Operande1 = decimal.Parse(temp);
-                zt_Write.Text = temp;
-                zt_read.Text = temp;
+                MessageBox.Show("Sans operandes l'operation est impossible");
+                monResultat = null;
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Mauvaise manipulation de votre part, vérifiez votre saisie");
+                monResultat = null;
             }
 
-            zt_Write.Text += "+";
-            temp = string.Empty;
-            this.ActiveControl = null;
         }
 
         private void btn_dot_Click(object sender, EventArgs e)
@@ -243,6 +294,10 @@ namespace Calculatrice_safronov
             catch(FormatException)
             {
                 MessageBox.Show("Traitement sans valeur est impossible...");
+            }
+            catch(NullReferenceException)
+            {
+                MessageBox.Show("Mauvaise manipulation de votre part, double égal est impossible!");
             }
            
         }
@@ -318,24 +373,38 @@ namespace Calculatrice_safronov
 
         private void btn_carre_Click(object sender, EventArgs e)
         {
-            if(monResultat == null)
+            try
             {
-                monResultat = new Carre();
-                monResultat.Operande1 = decimal.Parse(temp);
+                if (monResultat == null)
+                {
+                    monResultat = new Carre();
+                    monResultat.Operande1 = decimal.Parse(temp);
+                }
+                else if (monResultat.Operande1.HasValue)
+                {
+                    monResultat.Operande2 = decimal.Parse(temp);
+                    temp = monResultat.Calculer().ToString();
+                    monResultat = new Carre();
+                    monResultat.Operande1 = decimal.Parse(temp);
+                    zt_Write.Text = temp;
+                    zt_Write.Text = temp;
+                }
+
+                zt_Write.Text += "^";
+                temp = string.Empty;
+                this.ActiveControl = null;
             }
-            else if(monResultat.Operande1.HasValue)
+            catch(FormatException)
             {
-                monResultat.Operande2 = decimal.Parse(temp);
-                temp = monResultat.Calculer().ToString();
-                monResultat = new Carre();
-                monResultat.Operande1 = decimal.Parse(temp);
-                zt_Write.Text = temp;
-                zt_Write.Text = temp;
+                MessageBox.Show("Mauvaise manipulation de votre part, vérifiez votre saisie");
+                monResultat = null;
+            }
+            catch(ArgumentNullException)
+            {
+                MessageBox.Show("Opérations sans opérandes est impossible!");
+                monResultat = null;
             }
 
-            zt_Write.Text += "^";
-            temp = string.Empty;
-            this.ActiveControl = null;
         }
 
         private void btn_PI_Click(object sender, EventArgs e)
@@ -347,32 +416,38 @@ namespace Calculatrice_safronov
 
         private void btn_racine_Click(object sender, EventArgs e)
         {
-            if (monResultat == null)
-            {
-                try
+            try {
+                if (monResultat == null)
                 {
+
                     monResultat = new RacineCarre();
                     monResultat.Operande1 = decimal.Parse(temp);
                     btn_equal_Click(btn_equal, new EventArgs());
                     zt_Write.Text = temp;
                     zt_read.Text = temp;
+
                 }
-                catch(ArgumentNullException)
+                else if (monResultat.Operande1.HasValue)
                 {
-                    MessageBox.Show("Racine carré de valeur null est impossible");
+                    temp = monResultat.Calculer().ToString();
+                    monResultat = new RacineCarre();
+                    monResultat.Operande1 = decimal.Parse(temp);
+                    zt_Write.Text = temp;
+                    zt_read.Text = temp;
+                    btn_equal_Click(btn_equal, new EventArgs());
                 }
-                 
+                this.ActiveControl = null;
             }
-            else if(monResultat.Operande1.HasValue)
+            catch (ArgumentNullException)
             {
-                temp = monResultat.Calculer().ToString();
-                monResultat = new RacineCarre();
-                monResultat.Operande1 = decimal.Parse(temp);
-                zt_Write.Text = temp;
-                zt_read.Text = temp;
-                btn_equal_Click(btn_equal, new EventArgs());
+                MessageBox.Show("Racine carré de valeur null est impossible");
+                monResultat = null;
             }
-            this.ActiveControl = null;
+            catch (FormatException)
+            {
+                MessageBox.Show("Mauvaise manipulation de votre part, vérifiez votre saisie");
+                monResultat = null;
+            }
         }
     }
 }
