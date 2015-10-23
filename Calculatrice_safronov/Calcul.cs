@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculatrice_safronov
 {
-    abstract class Calcul
+    public abstract class Calcul
     {
         public abstract decimal Calculer();
         public decimal? Operande1 { get; set; }

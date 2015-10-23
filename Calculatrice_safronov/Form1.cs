@@ -20,7 +20,7 @@ namespace Calculatrice_safronov
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        public void Form1_Load(object sender, EventArgs e)
         {
             zt_Write.Text = null;
             zt_read.Text = null;
@@ -29,7 +29,7 @@ namespace Calculatrice_safronov
             this.KeyPress += new KeyPressEventHandler(WIN_CALC_KeyPress);
         }
 
-        private void btn_0_Click(object sender, EventArgs e)
+        public void btn_0_Click(object sender, EventArgs e)
         {
             zt_Write.Text += "0";
             this.ActiveControl = null;
@@ -37,70 +37,70 @@ namespace Calculatrice_safronov
 
         }
 
-        private void btn_1_Click(object sender, EventArgs e)
+        public void btn_1_Click(object sender, EventArgs e)
         {
             zt_Write.Text += "1";
             this.ActiveControl = null;
             temp += "1";
         }
 
-        private void btn_2_Click(object sender, EventArgs e)
+        public void btn_2_Click(object sender, EventArgs e)
         {
             zt_Write.Text += "2";
             this.ActiveControl = null;
             temp += "2";
         }
 
-        private void btn_3_Click(object sender, EventArgs e)
+        public void btn_3_Click(object sender, EventArgs e)
         {
             zt_Write.Text += "3";
             this.ActiveControl = null;
             temp += "3";
         }
 
-        private void btn_4_Click(object sender, EventArgs e)
+        public void btn_4_Click(object sender, EventArgs e)
         {
             zt_Write.Text += "4";
             this.ActiveControl = null;
             temp += "4";
         }
 
-        private void btn_5_Click(object sender, EventArgs e)
+        public void btn_5_Click(object sender, EventArgs e)
         {
             zt_Write.Text += "5";
             temp += "5";
             this.ActiveControl = null;
         }
 
-        private void btn_6_Click(object sender, EventArgs e)
+        public void btn_6_Click(object sender, EventArgs e)
         {
             zt_Write.Text += "6";
             temp += "6";
             this.ActiveControl = null;
         }
 
-        private void btn_7_Click(object sender, EventArgs e)
+        public void btn_7_Click(object sender, EventArgs e)
         {
             zt_Write.Text += "7";
             temp += "7";
             this.ActiveControl = null;
         }
 
-        private void btn_8_Click(object sender, EventArgs e)
+        public void btn_8_Click(object sender, EventArgs e)
         {
             zt_Write.Text += "8";
             this.ActiveControl = null;
             temp += "8";
         }
 
-        private void btn_9_Click(object sender, EventArgs e)
+        public void btn_9_Click(object sender, EventArgs e)
         {
             zt_Write.Text += "9";
             temp += "9";
             this.ActiveControl = null;
         }
 
-        private void btn_divise_Click(object sender, EventArgs e)
+        public void btn_divise_Click(object sender, EventArgs e)
         {
             try
             {
@@ -143,7 +143,7 @@ namespace Calculatrice_safronov
             }
         }
 
-        private void btn_multi_Click(object sender, EventArgs e)
+        public void btn_multi_Click(object sender, EventArgs e)
         {
             try
             {
@@ -179,7 +179,7 @@ namespace Calculatrice_safronov
 
         }
 
-        private void btn_less_Click(object sender, EventArgs e)
+        public void btn_less_Click(object sender, EventArgs e)
         {
             try
             {
@@ -214,7 +214,7 @@ namespace Calculatrice_safronov
             }
         }
 
-        private void btn_add_Click(object sender, EventArgs e)
+        public void btn_add_Click(object sender, EventArgs e)
         {
             try
             {
@@ -251,14 +251,14 @@ namespace Calculatrice_safronov
 
         }
 
-        private void btn_dot_Click(object sender, EventArgs e)
+        public void btn_dot_Click(object sender, EventArgs e)
         {
             zt_Write.Text += ",";
             this.ActiveControl = null;
             temp += ",";
         }
 
-        private void btn_reset_Click(object sender, EventArgs e)
+        public void btn_reset_Click(object sender, EventArgs e)
         {
             zt_Write.Text = null;
             zt_read.Text = null;
@@ -267,10 +267,8 @@ namespace Calculatrice_safronov
             monResultat = null;
         }
 
-        private void btn_equal_Click(object sender, EventArgs e)
+        public void btn_equal_Click(object sender, EventArgs e)
         {
-            
-
             try
             {
                 monResultat.Operande2 = decimal.Parse(temp);
@@ -302,7 +300,7 @@ namespace Calculatrice_safronov
            
         }
 
-        private void WIN_CALC_KeyPress(object sender, KeyPressEventArgs e)
+        public void WIN_CALC_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == '0')
             {
@@ -375,7 +373,7 @@ namespace Calculatrice_safronov
             }
         }
 
-        private void btn_carre_Click(object sender, EventArgs e)
+        public void btn_carre_Click(object sender, EventArgs e)
         {
             try
             {
@@ -411,7 +409,7 @@ namespace Calculatrice_safronov
 
         }
 
-        private void btn_PI_Click(object sender, EventArgs e)
+        public void btn_PI_Click(object sender, EventArgs e)
         {
             // on test si c'est numero           
             decimal myInt;
@@ -454,7 +452,7 @@ namespace Calculatrice_safronov
             }
         }
 
-        private void btn_racine_Click(object sender, EventArgs e)
+        public void btn_racine_Click(object sender, EventArgs e)
         {
             try {
                 if (monResultat == null)

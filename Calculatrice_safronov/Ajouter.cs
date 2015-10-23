@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculatrice_safronov
 {
-    class Ajouter : Calcul
+    public class Ajouter : Calcul
     {
         public override decimal Calculer()
         {
