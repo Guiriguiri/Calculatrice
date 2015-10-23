@@ -348,6 +348,10 @@ namespace Calculatrice_safronov
             {
                 btn_dot_Click(btn_dot, new EventArgs());
             }
+            else if (e.KeyChar == '.')
+            {
+                btn_dot_Click(btn_dot, new EventArgs());
+            }
             else if (e.KeyChar == '+')
             {
                 btn_add_Click(btn_add, new EventArgs());
@@ -366,7 +370,7 @@ namespace Calculatrice_safronov
             }
             else if (e.KeyChar == (char)Keys.Enter)
             {
-                e.Handled = true;          
+                e.Handled = true;
                 btn_equal_Click(btn_equal, new EventArgs());
             }
         }
@@ -409,9 +413,45 @@ namespace Calculatrice_safronov
 
         private void btn_PI_Click(object sender, EventArgs e)
         {
-            zt_Write.Text += "3,14";
-            this.ActiveControl = null;
-            temp += "3,14";
+            // on test si c'est numero           
+            decimal myInt;
+            bool isNumerical = decimal.TryParse(zt_Write.Text, out myInt);
+
+            //on test si la zone fichier est vide ou pas
+            bool vide = String.IsNullOrEmpty(zt_Write.Text);
+
+            //si la zone est vide, on initialise avec une valeur de "PI"
+            if (vide == true)
+            {  
+                zt_Write.Text += "3,14";
+                this.ActiveControl = null;
+                temp += "3,14";
+            }
+            else
+            {
+                // sinon on test s'il est bien numérique, s'il n'est pas --> on initialise le champ à blanc
+                if (isNumerical == false)
+                {
+                    //on vérifie qu'il s'agit d'une opération
+                    if (zt_Write.Text.Contains('*') || zt_Write.Text.Contains('-') || zt_Write.Text.Contains('+') || zt_Write.Text.Contains('/') || zt_Write.Text.Contains('^'))
+                    {
+                        zt_Write.Text += "3,14";
+                        this.ActiveControl = null;
+                        temp += "3,14";
+                    }
+                    else
+                    {
+                        zt_Write.Text = null;
+                    }
+                }
+                else
+                {
+                    zt_Write.Text = null;
+                    zt_Write.Text = "3,14";
+                    this.ActiveControl = null;
+                    temp = "3,14";
+                }
+            }
         }
 
         private void btn_racine_Click(object sender, EventArgs e)
